@@ -51,6 +51,4 @@ export const regenerateSegment = async (data) => {
     }
     throw new Error(error.message || 'Failed to regenerate segment');
   }
-};
-
-console.log(typeof wordCount, wordCount); // Should log: 'number', 1500 (or whatever value) 
+}; 
