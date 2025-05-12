@@ -51,14 +51,14 @@ const ScriptGenerator = () => {
       const data = await generateScript({
         title,
         inspirational_transcript: inspirationalTranscript,
-        word_count: Number(wordCount),
+        word_count: parseInt(wordCount),
         forbidden_words: forbiddenWords
           .split(',')
           .map(word => word.trim())
           .filter(Boolean),
         structure_prompt: structurePrompt,
       });
-  
+      console.log(data);
       let paragraphs = data.paragraphs;
       setTotalWords(data.total_words);
   
