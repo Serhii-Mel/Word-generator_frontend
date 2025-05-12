@@ -51,7 +51,7 @@ const ScriptGenerator = () => {
       const data = await generateScript({
         title,
         inspirational_transcript: inspirationalTranscript,
-        word_count: wordCount,
+        word_count: Number(wordCount),
         forbidden_words: forbiddenWords
           .split(',')
           .map(word => word.trim())
