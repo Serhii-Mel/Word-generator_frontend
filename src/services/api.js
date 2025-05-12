@@ -40,33 +40,15 @@ export const regenerateParagraph = async (data) => {
 
 export const regenerateSegment = async (data) => {
   try {
-    const response = await axios.post(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.REGENERATE_SEGMENT}`, data);
-    
-    // Parse the response data if it's a string
-    let result;
-    if (typeof response.data === 'string') {
-      result = JSON.parse(response.data);
-    } else if (typeof response.data.content === 'string') {
-      // If content is a string that looks like JSON, parse it
-      try {
-        result = JSON.parse(response.data.content);
-      } catch (e) {
-        result = response.data;
-      }
-    } else {
-      result = response.data;
-    }
-
-    if (!result || !result.content) {
-      throw new Error('Invalid response from server');
-    }
-
-    return result;
+    console.log('Sending regenerate segment request:', data); // Debug log
+    const response = await axios.post(`${API_CONFIG.BASE_URL}/regenerate-segment`, data);
+    console.log('Regenerate segment response:', response.data); // Debug log
+    return response.data;
   } catch (error) {
-    console.error('Regenerate segment error:', error);
+    console.error('Error in regenerateSegment:', error.response || error); // Enhanced error logging
     if (error.response?.data?.detail) {
       throw new Error(error.response.data.detail);
     }
-    throw error;
+    throw new Error(error.message || 'Failed to regenerate segment');
   }
 }; 

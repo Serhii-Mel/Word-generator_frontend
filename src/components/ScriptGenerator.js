@@ -39,8 +39,8 @@ const ScriptGenerator = () => {
   };
 
   const handleGenerateScript = async () => {
-    if (!title || !inspirationalTranscript) {
-      setError('Please fill in both the title and inspirational transcript');
+    if (!title) {
+      setError('Please fill in the title');
       return;
     }
   
@@ -305,15 +305,13 @@ const ScriptGenerator = () => {
             />
             <TextField
               fullWidth
-              label="Inspirational Video Transcript *"
+              label="Inspirational Video Transcript (Optional)"
+              multiline
+              rows={4}
               value={inspirationalTranscript}
               onChange={(e) => setInspirationalTranscript(e.target.value)}
               margin="normal"
-              multiline
-              rows={8}
-              InputProps={{ sx: { fontSize: '1.15rem', py: 2 } }}
-              helperText="Paste your reference transcript here"
-              disabled={loading}
+              placeholder="Paste the transcript of a video that inspires the style and structure you want..."
             />
             {/* File upload for transcript */}
             <Button
